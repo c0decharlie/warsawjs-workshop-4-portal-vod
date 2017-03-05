@@ -1,0 +1,21 @@
+<div class="album text-muted">
+  <div class="container">
+   <app-video-player [video]="video" *ngIf="video"></app-video-player>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input [(ngModel)]="searchFor" name="search" class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+    </form>
+
+    <div class="row">
+      <div class="card col-md-4" *ngFor="let video of videos | async | filter:searchFor">
+        <a routerLink="/video/{{video.id}}"><img class="card-img-top" [src]="video.thumb" alt="Card image cap"></a>
+        <div class="card-block">
+          <h4 class="card-title">{{video.title}}</h4>
+          <p class="card-text">{{video.description}}</p>
+          <a (click)="onVideoClick(video)" class="btn btn-primary">Zobacz</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
